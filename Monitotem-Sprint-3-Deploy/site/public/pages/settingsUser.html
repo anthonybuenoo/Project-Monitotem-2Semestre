@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/65f59d00ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/settingsUser.css">
+    <link rel="shortcut icon" href="./assets/totemCerto-2.png" type="image/x-icon">
+
+    <script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <title>Monitotem - Dashboard</title>
+</head>
+
+<body>
+
+    </div>
+
+
+    <nav id="abrirMenu">
+        <div class="container_navbar">
+            <div id="menu" class="menu">
+                <i onclick="abrir()" class="fa-solid fa-bars"></i>
+            </div>
+            <div id="user" class="user">
+                <i class="fa-solid fa-circle-user"></i> <span id="nomeUsuario">...</span>
+            </div>
+            <div id="options_menu" class="options_menu">
+                <a onclick="fechar()" class="option" href="./homeDashboard.html"><i
+                        class="fa-solid fa-chart-column"></i>
+                    <div id="option1" class="option_text">Painel</div>
+                </a>
+                <a onclick="fechar()" id="activee" class="option activee" href="./action.html">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <div id="option2" class="option_text">Action</div>
+                </a>
+                <a target="_blank" onclick="fechar()" class="option" href="https://app.slack.com/client/T03CPHXNLGN/C03DCQ9F8C9">
+                    <i class="slack fa-brands fa-slack"></i>
+                    <div id="option3" class="option_text">Slack</div>
+                </a>
+                <a onclick="fechar()" class="option" href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    <div id="option4" class="option_text">Ajustes</div>
+                </a>
+            </div>
+            <a onclick="fechar()" class="option" href="../index.html"> <i
+                    class="exit fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div id="fundoModal" class="fundoModal"></div>
+
+    <div id="container_modal" class="container_modal">
+
+        <div id="modal_reiniciar_maquina" class="modal_reiniciar_maquina">
+            <div>
+                <p>Confirmar alterações?</p>
+            </div>
+            <div class="">
+                <button id="modalExcluirUsuario_cancelar" onclick="cancelar()">Cancelar</button>
+                <button id="modalExcluirUsuario_excluir" onclick="reiniciarMaquina()">Salvar</button>
+            </div>
+        </div> 
+    </div>
+    
+    <div class="container_settings">
+        <div class="container_top">
+            <div class="titulo_top">
+              <p>Conta <span>Visão de geral</span></p>
+            </div>
+            <div class="top_10">
+              
+            </div>
+          </div>
+
+        <div class="listar">
+            <div class="icon"><i class='fa-solid fa-circle-user'></i></div>
+            <div class="inputs">
+                <div> <span> Nome: </span> <input id="nomeUser" type="text"></div>
+                <div> <span> Email: </span> <input id="emailUser" type="email"></div>
+                <div> <span> Telefone: </span> <input id="telefoneUser" type="tel"></div>
+                <div> <span> Senha: </span> <input id="senhaUser" type="text"></div>
+
+            </div>
+            <div class="buttonSave">
+                <button id="buttonExcluir" onclick="cancelar()">Cancelar</button>
+                <button id="buttonEditar" onclick="abrirModal()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    nomeUsuario.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+
+    function abrirModal() {
+        document.getElementById('container_modal').style.display = 'flex'
+        document.getElementById('fundoModal').style.display = 'flex'
+
+    }
+
+    function cancelar() {
+        window.location.reload(true)
+    }
+
+    function alterarDados() {
+        fetch("/alterarDados/alterarDados", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(async function (resposta) {
+            const containerListar = document.querySelector(".listar");
+            const listar = await resposta.json();
+            for (let i = 0; i < 1; i++) {
+                console.log(listar[i]);
+                document.getElementById('nomeUser').setAttribute("value", listar[i].nomeUsuario)
+                document.getElementById('emailUser').setAttribute("value", listar[i].emailUsuario)
+                document.getElementById('telefoneUser').setAttribute("value", listar[i].telefoneUsuario)
+                document.getElementById('senhaUser').setAttribute("value", listar[i].senhaUsuario)
+
+
+                document.getElementById('modalExcluirUsuario_excluir').onclick = function attDados() {
+                    fetch("/alterarDados/" + listar[i].id, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            nomeServer: nomeUser.value,
+                            emailServer: emailUser.value,
+                            telefoneServer: telefoneUser.value,
+                            senhaServer: senhaUser.value,
+
+                        }),
+                    }).then((res) => console.log(res));
+
+                    document.location.reload(true);
+                    window.alert("Alteração realizada com sucesso");
+                };
+
+
+            }
+        })
+    }
+    window.addEventListener("load", alterarDados);
+
+
+    var contador = 0;
+
+    function abrir() {
+        contador++;
+        if (contador == 1) {
+            document.getElementById("abrirMenu").style.width = "22%";
+            document.getElementById("menu").style.margin = "0px 0px 0px -70%";
+            document.getElementById("user").style.fontSize = "160px";
+            document.getElementById("option1").classList.add("active");
+            document.getElementById("option2").classList.add("active");
+            document.getElementById("option3").classList.add("active");
+            document.getElementById("option4").classList.add("active");
+            document.getElementById("html").style.overflow = "hidden";
+        } else if (contador > 1) {
+            document.getElementById("abrirMenu").style.width = "6%";
+            document.getElementById("menu").style.margin = "0px 0px 50px 0px";
+            document.getElementById("user").style.fontSize = "4rem";
+            document.getElementById("option1").classList.remove("active");
+            document.getElementById("option2").classList.remove("active");
+            document.getElementById("option3").classList.remove("active");
+            document.getElementById("option4").classList.remove("active");
+            contador = 0;
+        }
+    }
+
+    function fechar() {
+        document.getElementById("abrirMenu").style.width = "7%";
+        document.getElementById("menu").style.margin = "0px 0px 50px 0px";
+        document.getElementById("user").style.fontSize = "4rem";
+        document.getElementById("option1").classList.remove("active");
+        document.getElementById("option2").classList.remove("active");
+        document.getElementById("option3").classList.remove("active");
+        document.getElementById("option4").classList.remove("active");
+        contador = 0; ''
+    }
+</script>

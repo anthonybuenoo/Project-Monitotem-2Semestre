@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="../js/action.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Rajdhani:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/65f59d00ab.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/action.css">
+  <link rel="shortcut icon" href="./assets/totemCerto-2.png" type="image/x-icon">
+
+  <script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=f6673035-df8e-43d4-b558-483b6b419fad"> </script>
+  <title>Monitotem - Dashboard</title>
+</head>
+
+<body id="pdp" onload="atualizarFeed(),obterDadosGrafico(),getMemoryTotalRam()">
+  <div onclick="fecharModal()" id="fundoModal" class="fundoModall">
+
+  </div>
+  <div id="container_modal" class="container_modal">
+
+    <div id="modal_reiniciar_maquina" class="modal_reiniciar_maquina">
+      <div>
+        <p>Deseja realmente reiniciar o equipamento?</p>
+      </div>
+      <div class="">
+        <button id="modalExcluirUsuario_cancelar" onclick="fecharModal()">Cancelar</button>
+        <button id="modalExcluirUsuario_excluir" onclick="reiniciarMaquina()">Reiniciar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <nav id="abrirMenu">
+    <div class="container_navbar">
+      <div id="menu" class="menu">
+        <i onclick="abrir()" class="fa-solid fa-bars"></i>
+      </div>
+      <div id="user" class="user">
+        <i class="fa-solid fa-circle-user"></i> <span id="nomeUsuario">...</span>
+      </div>
+      <div id="options_menu" class="options_menu">
+        <a onclick="fechar()" class="option" href="./homeDashboard.html"><i class="fa-solid fa-chart-column"></i>
+          <div id="option1" class="option_text">Painel</div>
+        </a>
+        <a onclick="fechar()" id="activee" class="option activee" href="#">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <div id="option2" class="option_text">Action</div>
+        </a>
+        <a target="_blank" onclick="fechar()" class="option" href="https://app.slack.com/client/T03CPHXNLGN/C03DCQ9F8C9">
+          <i class="slack fa-brands fa-slack"></i>
+          <div id="option3" class="option_text">Slack</div>
+        </a>
+        <a onclick="fechar()" class="option" href="./settingsUser.html">
+          <i class="fa-solid fa-gear"></i>
+          <div id="option4" class="option_text">Ajustes</div>
+        </a>
+      </div>
+      <a onclick="fechar()" class="option" href="../index.html"> <i class="exit fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+  <div class="container_action">
+    <div class="container_top">
+      <div class="titulo_top">
+        <p>Dashboard <span>Visão geral</span></p>
+      </div>
+      <div class="top_10">
+        <div id="btn" class="btn">
+          <div onclick="evento()" id="btnBall" class="btn-ball"><i class="fa-solid fa-lightbulb"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="graficos_action">
+      <div class="grafico_ram_cpu">
+        <div id="grafico_cpu" class="grafico_cpu">
+          <h1>CPU</h1>
+          <canvas id="chartCpu"></canvas>
+
+        </div>
+        <div class="processos_action">
+          <div id="bloco_ok" class="bloco_ok">
+            <p>CPU</p>
+            <h1>OK</h1>
+            <h2>0-60%</h2>
+          </div>
+          <div id="bloco_alerta" class="bloco_alerta">
+            <p>CPU</p>
+            <h1>Alerta</h1>
+            <h2>60-80%</h2>
+          </div>
+          <div id="bloco_emergencia" class="bloco_emergencia">
+            <p>CPU</p>
+            <h1>Emergência</h1>
+            <h2>+80%</h2>
+          </div>
+
+        </div>
+        <span id="box_totens"></span>
+        <span id="status_bar"></span>
+      </div>
+      <div class="grafico_disco">
+        <h2>Memória Ram</h2>
+        <div class="status_disco">
+          <span class="uso_disco">
+            <div></div>Uso
+          </span>
+          <span class="livro_disco">
+            <div></div>Livre
+          </span>
+        </div>
+        <div class="status_ram">
+          <div class="bolinha"></div>
+          <p>+85 Emergência</p>
+        </div>
+
+        <div class="chartDisco"><span id="poercentDisc">0%</span><canvas height="300" id="chartDisco"></canvas></div>
+
+        <div class="buttons-action">
+          <button id="btnReiniciar" onclick="modalReinicialMaquina()">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
+<script>
+
+  nomeUsuario.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+
+
+  function modalReinicialMaquina() {
+    document.getElementById('modal_reiniciar_maquina').style.display = 'flex'
+    document.getElementById('fundoModal').style.display = 'flex'
+    document.getElementById('container_modal').style.display = 'flex'
+  }
+
+  function fecharModal() {
+    document.getElementById('modal_reiniciar_maquina').style.display = 'none'
+    document.getElementById('fundoModal').style.display = 'none'
+    document.getElementById('container_modal').style.display = 'none'
+  }
+
+  function reiniciarMaquina() {
+
+    fetch("/usuarios/reiniciarMaquina", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        reiniciarMaquinaServer: 1,
+        idTotem: sessionStorage.ID_TOTEM
+
+
+      })
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        window.alert("maquina reiniciada com sucesso");
+        document.location.reload(true);
+        limparFormulario();
+
+      } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+
+    });
+
+
+  }
+  let proximaAtualizacao;
+
+
+
+
+
+  //verificar_autenticacao();
+
+  // altere aqui como os dados serão exibidos
+  // e como são recuperados do BackEnd
+  function obterDadosGrafico(idTotem) {
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/${idTotem}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+
+          plotarGrafico(resposta, idTotem);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+  function plotarGrafico(resposta, idTotem) {
+    console.log('iniciando plotagem do gráfico...');
+
+    var dados = {
+      labels: [],
+      datasets: [
+        {
+          yAxisID: 'y-cpu',
+          label: '',
+          borderColor: '#32B9CD',
+          backgroundColor: '#32b9cd8f',
+          fill: true, 
+          data: []
+        }
+      ]
+    };
+
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      dados.labels.push(registro.momento_grafico);
+      dados.datasets[0].data.push(registro.cpu);
+    }
+
+    console.log(JSON.stringify(dados));
+
+    var ctx = chartCpu.getContext('2d');
+    window.grafico_linha = Chart.Line(ctx, {
+      data: dados,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: 'index',
+        stacked: false,
+        title: {
+          display: false,
+          text: 'Dados capturados'
+        },
+        scales: {
+          yAxes: [{
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-cpu',
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            },
+
+            gridLines: {
+              drawOnChartArea: false,
+            },
+          }],
+        }
+      }
+    });
+
+    setTimeout(() => atualizarGrafico(idTotem, dados), 2000);
+  }
+
+
+  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+  // buscando a última medida inserida em tabela contendo as capturas, 
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function atualizarGrafico(idTotem, dados) {
+
+    fetch(`/medidas/tempo-real/${idTotem}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+          console.log(`Dados atuais do gráfico: ${dados}`);
+
+
+          if (novoRegistro[0].cpu >= 80) {
+
+            dados.datasets[0].backgroundColor = '#ff0000'
+
+          }
+          else if (novoRegistro[0].cpu >= 50) {
+
+            dados.datasets[0].backgroundColor = '#f1c40f'
+
+          }
+          else {
+            dados.datasets[0].backgroundColor = '#008000'
+          }
+
+
+          // tirando e colocando valores no gráfico
+          dados.labels.shift(); // apagar o primeiro
+          dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+          dados.datasets[0].data.shift();  // apagar o primeiro de cpu
+          dados.datasets[0].data.push(novoRegistro[0].cpu); // incluir uma nova medida de umidad
+          window.grafico_linha.update();
+
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(idTotem, dados), 2000);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idTotem, dados), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+
+
+    // Chart Memory use
+
+    setInterval(function getMemoryTotalRam() {
+      fetch("/usuarios/getMemoryTotalRam/"+ sessionStorage.ID_TOTEM).then(function (resposta) {
+        console.log("ESTOU NO THEN DO getMemoryTotalRam()!")
+        if (resposta.ok) {
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos do usuario: ", JSON.stringify(resposta));
+
+            memoryram = resposta[resposta.indexOf(':') + 1]//não sei pq mas isso funciona
+            console.log(memoryram.RamEmUsobd);
+            sessionStorage.MEMORYRAM = memoryram.RamEmUsobd;
+
+          });
+        } else {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+        }
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+      return false;
+    }, 2000);
+
+    // chart Memory totally
+
+
+    setInterval(function getMemoryTotally() {
+      fetch("/usuarios/getMemoryTotally/" + sessionStorage.ID_TOTEM).then(function (resposta) {
+        console.log("ESTOU NO THEN DO getMemoryTotally()!")
+        if (resposta.ok) {
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos do usuario: ", JSON.stringify(resposta));
+            memoryramTotal = resposta[resposta.indexOf(':') + 1]
+            console.log(memoryramTotal.RamTotalbd);
+            sessionStorage.MEMORYRAMTOTALLY = memoryramTotal.RamTotalbd;
+
+          });
+        } else {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+        }
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+      return false;
+    }, 2000);
+
+
+
+
+
+
+    poercentDisc.innerHTML = `${sessionStorage.MEMORYRAM}%`;
+    const disco = document.getElementById('chartDisco');
+    const chartDisco = new Chart(disco, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [Number(sessionStorage.MEMORYRAMTOTALLY), Number(sessionStorage.MEMORYRAM)],
+          backgroundColor: [
+            '#2855b5',
+            '#051e55',
+
+          ],
+          borderColor: [
+            '#2855b5',
+            '#051e55',
+
+          ],
+        }]
+      },
+    });
+
+
+
+
+  }
+  window.onload = obterDadosGrafico(sessionStorage.ID_TOTEM);
+</script>

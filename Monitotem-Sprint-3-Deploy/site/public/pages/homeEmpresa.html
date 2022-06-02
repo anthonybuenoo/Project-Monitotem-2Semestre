@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="../js/cadastros.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Rajdhani:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/65f59d00ab.js" crossorigin="anonymous"></script>
+  <script src="../js/homeEmpresa.js"></script>
+  <link rel="stylesheet" href="../css/homeEmpresa.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <title>Monitotem</title>
+</head>
+
+<body>
+  <nav id="abrirMenu">
+    <div class="container_navbar">
+      <div id="menu" class="menu">
+        <i onclick="abrir()" class="fa-solid fa-bars"></i>
+      </div>
+      <div id="user" class="user">
+        <i class='fa-solid fa-circle-user'></i> <span id="nome_empresa"></span>
+      </div>
+      <div id="options_menu" class="options_menu">
+        <a onclick="fechar()" class="option" href=""><i class="fa-solid fa-users"></i>
+          <div id="option1" class="option_text">Usuarios</div>
+        </a>
+        <a onclick="fechar()" class="option" href="../pages/homeTotens.html">
+          <i class="fa-solid fa-display"></i>
+          <div id="option2" class="option_text">Totens</div>
+        </a>
+      </div>
+      <a onclick="fechar()" class="option" href="../index.html"> <i class="exit fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+  <div class="usuarios">
+    <div id="modalExcluirUsuario" class="modalExcluirUsuario">
+      <div>
+        <p>Deseja realmente excluir esse usuario?</p>
+      </div>
+      <div class="">
+        <button id="modalExcluirUsuario_cancelar">Cancelar</button>
+        <button id="modalExcluirUsuario_excluir">Excluir</button>
+      </div>
+    </div>
+    <div id="modalUsers">
+      <div class="container_inputs">
+        <h1>Cadastrar usuario</h1>
+        <div class="style_input"><span><i class="fa-solid fa-user"></i> Nome</span> <input type="text"
+            placeholder="Ex: Leo Jonas" id="ipt_nome_usuario"></div>
+        <div class="style_input"><span><i class="fa-solid fa-envelope-open-text"></i> Email</span> <input type="email"
+            placeholder="Ex: leojonas@monitotem.com.br" id="ipt_email_usuario"></div>
+        <div class="style_input"><span><i class="fa-solid fa-phone"></i> Telefone</span> <input type="tel"
+            placeholder="Ex: (11) 97657-6709" id="ipt_telefone_usuario"></div>
+        <div class="style_input"> <span><i class="fa-solid fa-venus-mars"></i> Gênero</span>
+          <select name="" id="slc_genero_usuario">
+            <option value="">--- Escolha uma opção ---</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="style_input"><span><i class="fa-solid fa-lock"></i> Senha</span> <input type="password"
+            placeholder="........" id="ipt_senha_usuario"></div>
+        <div class="style_input"><span><i class="fa-solid fa-lock-open"></i> Confirmar senha</span><input
+            type="password" placeholder="........" id="ipt_confirmar_senha_usuario"></div>
+      </div>
+      <div class="buttons_modal_cadastrar">
+        <button class="cadastrar_user1" onclick="fecharModal()">Cancelar</button>
+        <button class="cadastrar_user2" onclick="cadastrarUsuario()">Cadastrar</button>
+      </div>
+    </div>
+    <div id="divModal" class="modal">
+      <h2>Alterar informações do usuario</h2>
+    </div>
+    <div onclick="fecharModal()" id="fundoModal"></div>
+    <h1 class="title_lista_usuarios">Lista de usuarios</h1>
+    <div class="container_usuarios">
+    </div>
+    <button onclick="abrirmodal()" class="cadastrar_user">Novo cadastro</button>
+  </div>
+</body>
+
+</html>
+<script src="../js/cadastros.js"></script>
+<script>
+  nome_empresa.innerHTML = `${sessionStorage.NOME_EMPRESA}`;
+</script>

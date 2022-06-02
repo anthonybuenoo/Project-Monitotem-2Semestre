@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Rajdhani:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/65f59d00ab.js" crossorigin="anonymous"></script>
+  <script src="../js/homeTotens.js"></script>
+  <link rel="stylesheet" href="../css/homeTotens.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <title>Monitotem</title>
+</head>
+
+<body>
+
+  <nav id="abrirMenu">
+    <div class="container_navbar">
+      <div id="menu" class="menu">
+        <i onclick="abrir()" class="fa-solid fa-bars"></i>
+      </div>
+      <div id="user" class="user">
+        <i class='fa-solid fa-circle-user'></i> <span id="nome_empresa"></span>
+      </div>
+      <div id="options_menu" class="options_menu">
+        <a onclick="fechar()" class="option" href="../pages/homeEmpresa.html"><i class="fa-solid fa-users"></i>
+          <div id="option1" class="option_text">Usuarios</div>
+        </a>
+        <a onclick="fechar()" class="option" href="#action">
+          <i class="fa-solid fa-display"></i>
+          <div id="option2" class="option_text">Totens</div>
+        </a>
+      </div>
+      <a onclick="fechar()" class="option" href="../index.html"> <i class="exit fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+  <div onclick="fecharModal()" id="fundoModal"></div>
+  <section>
+    <div id="modalExcluirUsuario" class="modalExcluirUsuario">
+      <div>
+        <p>Deseja realmente remover este totem?</p>
+      </div>
+      <div class="">
+        <button id="modalExcluirUsuario_cancelar">Cancelar</button>
+        <button id="modalExcluirUsuario_excluir">Excluir</button>
+      </div>
+    </div>
+    <h1>Lista de totens</h1>
+    <div class="container_totens">
+    </div>
+    <div id="divModal" class="modal">
+      <h2>Alterar informações</h2>
+    </div>
+  </section>
+</body>
+
+
+
+</html>
+
+<script>
+  nome_empresa.innerHTML = `${sessionStorage.NOME_EMPRESA}`;
+</script>

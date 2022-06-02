@@ -1,0 +1,72 @@
+:root {
+    --background: #f0f2f5;
+    --red: #e52e4d;
+    --blue: #286db5;
+    --blue-light: #328ae8;
+    --text-title: #363f5f;
+    --text-body: #969cb3;
+    --shape: #ffffff;
+    --green: #33cc95;
+    --black: #1c1c1c;
+    --gray: #64676b;
+    --purple: #0602B7;
+    --orange: #FF9900;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 93.75%;
+    /*15px*/
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--background);
+    -webkit-font-smooting: antialiased;
+    font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-weight: 600;
+}
+
+a {
+    list-style: none;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.content {
+    width: min(980px, 1024px);
+}
+
+ ::-webkit-scrollbar {
+    background: var(--text-body);
+    border-radius: 0.25rem;
+}
+
+ ::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-title);
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="./assets/totemCerto.png">
+    <script src="https://kit.fontawesome.com/65f59d00ab.js" crossorigin="anonymous"></script>
+    <title>Monitotem - Login</title>
+    <link rel="shortcut icon" href="./assets/totemCerto-2.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <script src="../js/script.js"></script>
+</head>
+
+<body>
+
+
+    <!--TELA DE CADASTRO-->
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="form">
+                <h1><i class="bi bi-person-circle"></i>Cadastre sua empresa</h1>
+                <form onsubmit="event.preventDefault()">
+                    <div class="input-group">
+                        <label for="">CNPJ: </label>
+                        <input class="input" type="text" id="ipt_cnpj_empresa" name="name"
+                            placeholder="Ex: 10.934.985/0001-86">
+                        <label for="">Nome: </label>
+                        <input class="input" type="text" id="ipt_nome_empresa" name="name" placeholder="Ex: Monitotem">
+                        <label for="">Email: </label>
+                        <input class="input" type="text" id="ipt_email_empresa" name="name"
+                            placeholder="Ex: monitotem@gmail.com">
+                        <label for="">Cep: </label>
+                        <input class="input" type="text" id="ipt_cep_empresa" name="name" placeholder="08370-365">
+                        <label for="">Telefone: </label>
+                        <input class="input" type="text" id="ipt_telefone_empresa" name="name"
+                            placeholder="(11)22536204">
+                        <label for="">Senha: </label>
+                        <input class="input" type="password" id="ipt_senha_empresa" name="senha" placeholder="******">
+                        <label for="">Confirmar senha: </label>
+                        <input class="input" type="password" id="ipt_confirmar_senha_empresa" name="confirmar_senha"
+                            placeholder="******">
+
+                        <small class="help">
+                            Atenção - Preencha todos os campos !!!
+                        </small>
+                        <div class="input-group actions">
+                            <a href="#" onclick="Modal.close()" class="button cancel">Cancelar</a>
+                            <button class="btn-login" type="button" onclick="cadastrarEmpresa()">Cadastrar</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TELA DE LOGIN-->
+    <div class="container">
+        <div class="div-right">
+            <img onclick="window.location = '../index.html'" src="assets/totemCerto-2.png" alt="a" />
+        </div>
+        <div class="div-left">
+            <div class="div-texto">
+                <p>Faça seu <span>Login</span></p>
+
+
+            </div>
+
+            <!-- <input type="radio" checked>      
+                <input type="radio" onclick="mudar_usuario()"> -->
+            <div class="wrapper">
+                <input type="radio" name="select" id="option-1" checked>
+                <input type="radio" name="select" id="option-2" onclick="mudar_usuario()">
+                <label for="option-1" class="option option-1">
+                    <div class="dot"></div>
+                    <span>Empresa</span>
+                </label>
+                <label for="option-2" class="option option-2">
+                    <div class="dot"></div>
+                    <span>Analista</span>
+                </label>
+            </div>
+
+            <!-- <span>Login como Empresa</span> -->
+            <div class="div-group ">
+                <i class="fa-solid fa-user"></i>
+                <input id="ipt_email" class="ipt_email_empresa" type="email" placeholder="Email" />
+            </div>
+            <div class="div-group">
+                <i class="fa-solid fa-lock"></i>
+                <input id="ipt_senha" class="ipt_senha" type="password" placeholder="Senha" />
+            </div>
+            <button id="bntEmpresa" onclick="entrarEmpresa()" class="btn-login">Login</button>
+
+            <p id="cadastroEmpresa">Não tem conta? Cadastre sua <span class="spn-cadastrar" onclick="Modal.open()"><u>empresa aqui</u></span>
+            </p>
+            <div class="loader" id="div_aguardar"></div>
+        </div>
+    </div>
+</body>
+
+<script src="../js/cadastros.js"></script>
+<script src="../js/logins.js"></script>
+
+</html>

@@ -1,0 +1,622 @@
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+nav {
+  width: 7%;
+  height: 100vh;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #2855b5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+.container_navbar {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2rem;
+  color: white;
+}
+a {
+  color: white;
+}
+.menu {
+  width: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.6s;
+}
+
+.menu i {
+  cursor: pointer;
+}
+
+.user {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 4rem;
+  margin-bottom: 50px;
+  transition: all 0.3s;
+}
+
+.user span {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.options_menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.option {
+  width: 56%;
+  height: 45px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+}
+
+.fundoModal {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.607);
+  display: none;
+  animation: animate;
+  animation-duration: 800ms;
+}
+
+.action {
+  display: flex;
+}
+
+.option:hover {
+  color: #286db5;
+  background-color: white;
+}
+
+.option span {
+  font-size: 0.6em;
+}
+.slack {
+  font-size: 36px;
+}
+
+.option_text {
+  height: 40px;
+  width: 100px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.active {
+  display: flex;
+}
+
+.container_action {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container_top {
+  width: 100%;
+  height: 25%;
+  display: flex;
+}
+
+.titulo_top {
+  width: 30%;
+  height: 100%;
+  padding: 30px;
+}
+
+.titulo_top p {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.titulo_top p span {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.top_10 {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 30px;
+  padding-bottom: 90px;
+}
+
+.processos_action {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-right: 5%;
+}
+.bloco_emergencia {
+  width: 170px;
+  height: 90px;
+  background-color: #ff0202;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.bloco_emergencia p {
+  margin-bottom: -15px;
+}
+
+.bloco_emergencia h1 {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+.bloco_emergencia h2 {
+  font-weight: lighter;
+  color: black;
+  margin-bottom: 1px;
+}
+
+.bloco_alerta {
+  width: 170px;
+  height: 90px;
+  background-color: #ecc122;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.bloco_alerta p {
+  margin-bottom: -15px;
+}
+
+
+.bloco_alerta h1 {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+.bloco_alerta h2 {
+  font-weight: lighter;
+  color: black;
+  margin-bottom: 1px;
+}
+
+.bloco_ok {
+  width: 170px;
+  height: 90px;
+  background-color: #3cb01f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.bloco_ok p {
+  margin-bottom: -15px;
+}
+
+.bloco_ok h1 {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+.bloco_ok h2 {
+  font-weight: lighter;
+  color: black;
+  margin-bottom: 1px;
+}
+
+.graficos_action {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.grafico_ram_cpu {
+  width: 70%;
+  height: 100%;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.grafico_ram {
+  height: 50%;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.grafico_cpu {
+  margin-top: -40px;
+  height: 500px;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.grafico_cpu h1 {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.grafico_disco {
+  width: 30%;
+  height: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.grafico_disco h1 {
+  margin-bottom: 10px;
+}
+
+.chartDisco {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+.chartDisco span {
+  font-size: 3em;
+  position: absolute;
+  margin-top: 15px;
+}
+
+.grafico_disco h1 {
+  font-size: 1.5em;
+}
+
+.status_disco {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status_ram{
+  width: 150px;
+  height: 14px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: center;
+}
+
+.bolinha{
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background-color: rgb(219, 0, 0);
+  margin-right: 5px;
+}
+.uso_disco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.uso_disco div {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  margin: 3px;
+  background-color: #001a52;
+  border-radius: 5px;
+}
+
+.livro_disco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.livro_disco div {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  margin: 3px;
+  background-color: #0e4aca;
+  border-radius: 5px;
+}
+
+.buttons-action {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btnReiniciar {
+  margin: 10px;
+  height: 50px;
+  width: 120px;
+  font-size: 1em;
+  color: black;
+  border: 1px solid #2855b5;
+  border-radius: 0.3em;
+  transition: all 0.3s;
+  background-color: #19419600;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#btnReiniciar:hover {
+  background-color: #2855b5;
+  color: white;
+}
+
+.modal {
+  width: 450px;
+  height: 210px;
+  background-color: #ffff;
+  border-top: 15px solid #2855b5;
+  border-radius: 5px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: animate;
+  animation-duration: 800ms;
+}
+
+.modal span {
+  font-size: 1.5em;
+}
+
+.container_modal {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal span {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.cancelar {
+  height: 50px;
+  width: 100px;
+  margin: 20px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  transition: all 0.3s;
+  border: #2855b5 1px solid;
+}
+
+.cancelar:hover {
+  background-color: #2855b5;
+  font-size: 1.2em;
+  color: white;
+}
+
+.encerrar {
+  height: 50px;
+  width: 100px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  margin: 20px;
+  transition: all 0.3s;
+  border: red 1px solid;
+}
+
+.encerrar:hover {
+  background-color: red;
+  font-size: 1.2em;
+  color: white;
+}
+
+@keyframes animate {
+  from {
+    opacity: 1;
+  }
+  from {
+    opacity: 0;
+  }
+}
+
+.fecharModal {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  float: right;
+}
+
+.fundoModal {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.607);
+  display: none;
+  animation: animate;
+  animation-duration: 800ms;
+}
+
+.activee {
+  background-color: white;
+  color: #286db5;
+}
+
+.btn {
+  width: 105px;
+  height: 52px;
+  border-radius: 50px;
+  border: rgb(38, 38, 53) solid 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.3s;
+}
+
+.btn-ball {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin-left: 2px;
+  color: rgba(255, 247, 0, 0.45);
+  background-color: black;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal_reiniciar_maquina {
+  height: 180px;
+  width: 450px;
+  position: absolute;
+  border-top: 12px solid #2855b5;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  z-index: 11;
+  flex-direction: column;
+  animation: animate;
+  animation-duration: 800ms;
+}
+
+.modal_reiniciar_maquina div {
+  height: 50%;
+  width: 100%;
+  font-size: 20px;
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_reiniciar_maquina p {
+  margin-top: 20px;
+}
+
+#modalExcluirUsuario_cancelar {
+  height: 55px;
+  width: 120px;
+  background-color: white;
+  font-size: 0.8em;
+  border-radius: 5px;
+  margin: 20px;
+  transition: all 0.3s;
+  border: #2855b5 1px solid;
+}
+
+#modalExcluirUsuario_cancelar:hover {
+  background-color: #2855b5;
+  color: white;
+}
+
+#modalExcluirUsuario_excluir {
+  height: 55px;
+  width: 120px;
+  background-color: white;
+  font-size: 0.8em;
+  border-radius: 5px;
+  margin: 20px;
+  transition: all 0.3s;
+  border: #ff0000 1px solid;
+}
+
+#modalExcluirUsuario_excluir:hover {
+  background-color: #ff0000;
+  color: white;
+}
+
+.fundoModall {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.607);
+  display: none;
+  animation: animate;
+  animation-duration: 800ms;
+  z-index: 1;
+}
+
+.container_modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container_modal {
+  display: none;
+}
